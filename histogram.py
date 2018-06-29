@@ -109,5 +109,3 @@ root.title("Histogram")
 root.geometry("600x200")
 app = Okienko(master=root)
 root.mainloop()
-i = 4
-n = 1000
