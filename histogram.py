@@ -1,7 +1,6 @@
 import matplotlib
 import numpy as np
 from tkinter import *
-
 matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 from matplotlib.figure import Figure
@@ -37,6 +36,7 @@ class Okienko(Frame):
         self.input_u_t(self.input_u.get())
         self.input_s_t(self.input_s.get())
         self.x = np.random.normal(self.u, self.s, self.n)
+        self.rys_hist()
 
     def rys_2(self, v):
         f = Figure(figsize=(5, 4), dpi=100)
