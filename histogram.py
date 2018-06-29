@@ -75,7 +75,6 @@ class Okienko(Frame):
         self.input_i["width"] = 6
         self.input_i.grid(row=1, column=1)
         self.input_i.delete(0, END)
-        self.input_i.insert(0, "0")
 
         self.input_n = Entry(self, bd=5)
         self.input_n["width"] = 6
