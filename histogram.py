@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
-from matplotlib import interactive
+import matplotlib
 import numpy as np
 from tkinter import *
-interactive(True)
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.figure import Figure
 
 class Okienko(Frame):
     def input_i_t(self,inpt):
@@ -35,13 +37,21 @@ class Okienko(Frame):
         self.input_s_t(self.input_s.get())
         self.x = np.random.normal(self.u, self.s, self.n)
 
+    def rys_2(self,v):
+        f = Figure(figsize=(5,4),dpi=100)
+        a = f.add_subplot(111)
+        a.hist(self.x,v)
+        canvas = FigureCanvasTkAgg(f, self)
+        canvas.show()
+        canvas.get_tk_widget().grid(row=9)
+
     def rys_hist(self):
         d = int(round(np.sqrt(self.n)))
         self.input_i_t(self.input_i.get())
         if self.i == 0:
-            plt.hist(self.x,d)
+            self.rys_2(d)
         else:
-            plt.hist(self.x,self.i)
+            self.rys_2(self.i)
 
     def createWidgets(self):
         self.label1 = Label(self)
@@ -103,9 +113,10 @@ class Okienko(Frame):
         self.s = 1
         self.pack()
         self.createWidgets()
+        self.rys_2(int(round(np.sqrt(self.n))))
 
 root = Tk()
 root.title("Histogram")
-root.geometry("600x200")
+root.geometry("800x600")
 app = Okienko(master=root)
 root.mainloop()
